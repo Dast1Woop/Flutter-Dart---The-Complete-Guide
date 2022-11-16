@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide_fighting/questionText.dart';
 
 // void main() {
 //   runApp(MyApp());
@@ -8,26 +9,26 @@ void main() => runApp(MyApp());
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
-  void answerQuestion() {
+class _MyAppState extends State<MyApp> {
+  void _answerQuestion() {
     setState(() {
-      questionIndex = 1;
+      _questionIndex = 1;
     });
 
     print("answer question!!!");
   }
 
-  var questionsArr = [
-    'what is your favorite color?',
+  final _questionsArr = [
+    'what is your favorite color4?',
     'what is your favorite movie?',
     'what is your favorite car?',
   ];
 
-  var questionIndex = 0;
+  var _questionIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -42,18 +43,18 @@ class MyAppState extends State<MyApp> {
           ),
           body: Column(
             children: [
-              Text(
-                questionsArr[questionIndex],
+              QuestionText(
+                _questionsArr[_questionIndex],
               ),
               RaisedButton(
                 child: Text("answer 1"),
-                onPressed: answerQuestion,
+                onPressed: _answerQuestion,
               ),
               RaisedButton(
                 child: Text("answer 2"),
                 onPressed: () {
                   setState(() {
-                    questionIndex = 2;
+                    _questionIndex = 2;
                   });
 
                   print("answer 2 clicked");

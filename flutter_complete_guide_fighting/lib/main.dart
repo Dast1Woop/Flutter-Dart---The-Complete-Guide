@@ -56,6 +56,7 @@ class _MyAppState extends State<MyApp> {
               //不能使用局部变量，因为此处接收的是 Widget
               // var _answerArr = _questionsArr[_questionIndex]["answer"] as List<String>
 
+              ///...:数组解包出来单个元素；toList：数组map后的对象默认不是数组，需要转为数组
               ...(_questionsArr[_questionIndex]["answer"] as List<String>)
                   .map((answer) {
                 return Answer(_answerQuestion, answer);

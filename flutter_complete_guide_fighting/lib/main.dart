@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide_fighting/answer.dart';
 import 'package:flutter_complete_guide_fighting/question_text.dart';
+import 'package:flutter_complete_guide_fighting/quiz.dart';
+import 'package:flutter_complete_guide_fighting/result.dart';
 
 // void main() {
 //   runApp(MyApp());
@@ -16,11 +18,12 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   void _answerQuestion() {
+    print("answer question!!!");
+    // if (_questionIndex + 1 < _questionsArr.length) {
     setState(() {
       _questionIndex += 1;
     });
-
-    print("answer question!!!");
+    // }
   }
 
   final _questionsArr = [
@@ -47,22 +50,20 @@ class _MyAppState extends State<MyApp> {
           appBar: AppBar(
             title: Text("Title"),
           ),
-          body: Column(
-            children: [
-              QuestionText(
-                _questionsArr[_questionIndex]["question"] as String,
-              ),
-
-              //不能使用局部变量，因为此处接收的是 Widget
-              // var _answerArr = _questionsArr[_questionIndex]["answer"] as List<String>
-
-              ///...:数组解包出来单个元素；toList：数组map后的对象默认不是数组，需要转为数组
-              ...(_questionsArr[_questionIndex]["answer"] as List<String>)
-                  .map((answer) {
-                return Answer(_answerQuestion, answer);
-              }).toList(),
-            ],
-          ),
+          body:
+              //此处不能用if，但是可以用三目运算符！！！
+              // if (_questionIndex < _questionsArr.length) {
+              // Text("hi1")
+              // }else{
+              //   Text("hi")
+              // }
+              _questionIndex < _questionsArr.length
+                  ? Quiz(
+                      questionsArr: _questionsArr,
+                      questionIndex: _questionIndex,
+                      answerQuestion: _answerQuestion,
+                    )
+                  : Result(),
         ),
       ),
     );

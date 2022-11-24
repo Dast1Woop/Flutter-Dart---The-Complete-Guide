@@ -10,7 +10,7 @@ class Quiz extends StatelessWidget {
   final List<Map<String, Object>> questionsArr;
 
   final int questionIndex;
-  final void Function() answerQuestion;
+  final void Function(int) answerQuestion;
 
   //Named parameters can't start with an underscore
   Quiz(
@@ -30,9 +30,10 @@ class Quiz extends StatelessWidget {
         // var _answerArr = questionsArr[questionIndex]["answer"] as List<String>
 
         ///...:数组解包出来单个元素；toList：数组map后的对象默认不是数组，需要转为数组
-        ...(questionsArr[questionIndex]["answer"] as List<String>)
-            .map((answer) {
-          return Answer(answerQuestion, answer);
+        ...(questionsArr[questionIndex]["answer"] as List<Map<String, Object>>)
+            .map((answerDic) {
+          return Answer(
+              () => answerQuestion(answerDic["score"]), answerDic["content"]);
         }).toList(),
       ],
     );

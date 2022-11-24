@@ -17,27 +17,38 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  void _answerQuestion() {
-    print("answer question!!!");
+  void _answerQuestion(int score) {
     // if (_questionIndex + 1 < _questionsArr.length) {
     setState(() {
       _questionIndex += 1;
+      _totalScore += score;
     });
+    print("answer question!!! total score: $_totalScore");
     // }
   }
 
   final _questionsArr = [
     {
       "question": 'what\'s your favorite color?',
-      "answer": ["red", "green", "blue", "white"]
+      "answer": [
+        {"content": "red", "score": 5},
+        {"content": "green", "score": 3},
+        {"content": "blue", "score": 4},
+        {"content": "white", "score": 1}
+      ]
     },
     {
       "question": 'what\'s your favorite movie?',
-      "answer": ["活着", "平凡的世界", "阿甘正传"]
+      "answer": [
+        {"content": "活着", "score": 10},
+        {"content": "平凡的世界", "score": 20},
+        {"content": "阿甘正传", "score": 15}
+      ]
     },
   ];
 
   var _questionIndex = 0;
+  var _totalScore = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +74,7 @@ class _MyAppState extends State<MyApp> {
                       questionIndex: _questionIndex,
                       answerQuestion: _answerQuestion,
                     )
-                  : Result(),
+                  : Result(_totalScore),
         ),
       ),
     );

@@ -4,6 +4,9 @@
 // 3) Split the app into three widgets: App, TextControl & Text
 
 import 'package:flutter/material.dart';
+import 'package:flutter_assignment/app.dart';
+
+//todo:MyApp extends StatelessWidget, textControl extends StatefulWidget
 
 void main(List<String> args) {
   runApp(MyApp());
@@ -34,19 +37,7 @@ class _MyAppState extends State<MyApp> {
             "Title",
           ),
         ),
-        body: Column(
-          children: [
-            Text(
-              _content,
-            ),
-            RaisedButton(
-              onPressed: _btnDidClick,
-              child: Text(
-                "btn title",
-              ),
-            )
-          ],
-        ),
+        body: App(_content, _btnDidClick),
       ),
     );
   }

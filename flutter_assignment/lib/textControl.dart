@@ -1,18 +1,40 @@
 import 'package:flutter/material.dart';
 
-class TextControl extends StatelessWidget {
+import 'contentText.dart';
+
+class TextControl extends StatefulWidget {
   // const TextControl({ Key? key }) : super(key: key);
 
-  final VoidCallback btnDidClick;
-  TextControl(this.btnDidClick);
+  @override
+  State<StatefulWidget> createState() {
+    return TextControlState();
+    // throw UnimplementedError();
+  }
+}
+
+class TextControlState extends State<TextControl> {
+  var _content = "content";
+
+  void _btnDidClick() {
+    setState(() {
+      _content = "content changed1";
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
-      onPressed: btnDidClick,
-      child: Text(
-        "btn title",
-      ),
+    return Column(
+      children: [
+        ContentText(
+          _content,
+        ),
+        RaisedButton(
+          onPressed: _btnDidClick,
+          child: Text(
+            "btn title",
+          ),
+        ),
+      ],
     );
   }
 }

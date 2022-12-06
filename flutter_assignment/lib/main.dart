@@ -4,29 +4,14 @@
 // 3) Split the app into three widgets: App, TextControl & Text
 
 import 'package:flutter/material.dart';
-import 'package:flutter_assignment/app.dart';
-
-//todo:MyApp extends StatelessWidget, textControl extends StatefulWidget
+import 'package:flutter_assignment/textControl.dart';
 
 void main(List<String> args) {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   // const Myapp({ Key? key }) : super(key: key);
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  var _content = "content";
-
-  void _btnDidClick() {
-    setState(() {
-      _content = "content changed1";
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +22,7 @@ class _MyAppState extends State<MyApp> {
             "Title",
           ),
         ),
-        body: App(_content, _btnDidClick),
+        body: TextControl(),
       ),
     );
   }

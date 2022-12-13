@@ -13,25 +13,25 @@ class App extends StatelessWidget {
     Transaction(
       id: "id0",
       title: "title0",
-      price: 1,
+      price: 19.99,
       date: DateTime.now(),
     ),
     Transaction(
       id: "id1",
-      title: "title0",
-      price: 2,
+      title: "title1",
+      price: 200.66,
       date: DateTime.now(),
     ),
     Transaction(
       id: "id2",
-      title: "title0",
-      price: 11,
+      title: "title2222",
+      price: 11.11,
       date: DateTime.now(),
     ),
     Transaction(
-      id: "id3",
-      title: "title0",
-      price: 12,
+      id: "id3333",
+      title: "title333333333333333333333333333",
+      price: 2.22,
       date: DateTime.now(),
     ),
   ];
@@ -49,19 +49,43 @@ class App extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            //数组解包+匹配语法格式：...(arr).map((e){xx})
-            ...(transactionsArr).map((e) {
+            //数组解包(此处解包的是toList()返回的widget数组)+匹配语法格式：...(arr).map((e){xx})
+            ...((transactionsArr).map((e) {
               return Container(
-                child: Card(
-                  color: Colors.orange,
-                  child: Text(e.id + " " + e.title + " " + '${e.price}'),
-                  elevation: 5, //阴影
+                child: Row(
+                  children: [
+                    Container(
+                      child: Text(
+                        e.price.toString(),
+                        style: TextStyle(
+                          color: Colors.purple,
+                        ),
+                      ),
+                      margin: EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 8,
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.purple,
+                          width: 2,
+                        ),
+                      ),
+                      padding: EdgeInsets.all(12),
+                    ),
+                    Column(
+                      children: [
+                        Text(e.title),
+                        Text(e.date.toString()),
+                      ],
+                    ),
+                  ],
                 ),
                 width: double.infinity,
                 alignment: Alignment.center,
-                color: Colors.orange,
+                // color: Colors.orange,
               );
-            }).toList(),
+            }).toList()),
           ],
         ),
       ),

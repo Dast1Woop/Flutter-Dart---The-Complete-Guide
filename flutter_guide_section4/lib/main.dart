@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_guide_section4/transaction.dart';
+import 'package:intl/intl.dart';
 
 void main(List<String> args) {
   runApp(App());
@@ -49,6 +50,30 @@ class App extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Card(
+              child: Text("Chart"),
+              elevation: 5,
+              color: Colors.blue,
+            ),
+            Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  TextField(
+                    decoration: InputDecoration(labelText: "Title"),
+                  ),
+                  TextField(
+                    decoration: InputDecoration(labelText: "amount"),
+                  ),
+                  FlatButton(
+                    onPressed: () {},
+                    child: Text("Add transaction"),
+                    textColor: Colors.purple,
+                  )
+                ],
+              ),
+            ),
             //数组解包(此处解包的是toList()返回的widget数组)+匹配语法格式：...(arr).map((e){xx})
             ...((transactionsArr).map((e) {
               return Container(
@@ -59,9 +84,10 @@ class App extends StatelessWidget {
                     Container(
                       alignment: Alignment.center,
                       child: Text(
-                        e.price.toString(),
+                        "\$${e.price}",
                         style: TextStyle(
                           color: Colors.purple,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                       margin: EdgeInsets.symmetric(
@@ -75,7 +101,7 @@ class App extends StatelessWidget {
                         ),
                       ),
                       padding: EdgeInsets.all(12),
-                      width: 72,
+                      width: 82,
                     ),
                     Container(
                       // width: double.infinity,//如何设置才能保证Container水平撑满到整个可见区域？
@@ -94,7 +120,8 @@ class App extends StatelessWidget {
                             height: 36,
                           ),
                           Text(
-                            e.date.toString(),
+                            DateFormat("yyyy-MM-dd HH:mm:ss").format(e.date),
+                            // e.date.toString(),
                           ),
                         ],
                         crossAxisAlignment: CrossAxisAlignment.start,
